@@ -18,7 +18,7 @@ public  class JuegoScene extends Scene {
 
         ImageView player1 = (ImageView) lookup("#p1");
         ImageView player2 = (ImageView) lookup("#p2");
-        GridPane tablero = (GridPane) lookup("#tablero");
+        GridPane tablero = (GridPane) lookup("#tablero")    ;
 
 
         addEventHandler(KeyEvent.KEY_PRESSED, event -> {

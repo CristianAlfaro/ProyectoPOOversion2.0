@@ -47,6 +47,8 @@ public class ControladorInicio implements Initializable {
         stage.setX(event.getScreenX() - x);
         stage.setY(event.getScreenY() - y);
     }
+
+
     @FXML
     void pressed (MouseEvent event) {
         x = event.getSceneX();
@@ -65,13 +67,12 @@ public class ControladorInicio implements Initializable {
         p2.setNombre(player2);
         System.out.println(p1.getNombre());
         System.out.println(p2.getNombre());
-
         try{
             Thread.sleep(1000);
         }catch(InterruptedException e ) {
             System.out.println("Thread Interrupted");
         }
-        pantallaCarga();
+
 
         Parent parent = FXMLLoader.load(mainApp.obtenerdirrectorio().getClass().getResource("fxml/pantallaMenu.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

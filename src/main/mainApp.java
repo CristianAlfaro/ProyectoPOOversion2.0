@@ -3,11 +3,17 @@ package main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import main.musica.reproductor;
 import main.scenes.FactoryScene;
 import main.scenes.JuegoScene;
 import main.scenes.TypeScene;
+
+import java.io.File;
 
 
 public class mainApp extends Application {
@@ -19,7 +25,8 @@ public class mainApp extends Application {
         primaryStage.setScene(FactoryScene.getScene(TypeScene.MAIN,this));
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
-
+        reproductor reproductor = new reproductor();
+        reproductor.reproducir("fondoinicio");
     }
 
 
@@ -35,4 +42,5 @@ public class mainApp extends Application {
     public static mainApp getInstance() {
         return main;
     }
+
 }
