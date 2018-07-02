@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="patallainicio" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="673.0" prefWidth="1194.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ControladorInicio">
+   <children>
+      <ImageView fitHeight="45.0" fitWidth="40.0" layoutX="14.0" layoutY="614.0" onMouseClicked="#topscore" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/top.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="56.0" layoutY="612.0" onMouseClicked="#helpuser" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ayuda.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="1123.0" layoutY="25.0" onMouseClicked="#closeWindows" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/salida.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="textplayer1" alignment="CENTER" focusColor="RED" layoutX="378.0" layoutY="450.0" prefHeight="31.0" prefWidth="182.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
+         <font>
+            <Font name="Triforce" size="16.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="textplayer2" alignment="CENTER" cacheShape="false" focusColor="#27ff2b" layoutX="615.0" layoutY="450.0" prefHeight="31.0" prefWidth="190.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
+         <font>
+            <Font name="Triforce" size="16.0" />
+         </font>
+      </JFXTextField>
+      <ImageView fitHeight="60.0" fitWidth="58.0" layoutX="568.0" layoutY="554.0" onMouseClicked="#saveplayers" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/play.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="453.0" layoutY="489.0" onMouseClicked="#helpuserp1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/player.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="40.0" layoutX="694.0" layoutY="489.0" onMouseClicked="#helpuserp2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/player.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="help" layoutX="1.0" prefHeight="664.0" prefWidth="1182.0" styleClass="help" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="14.0" layoutY="614.0" onMouseClicked="#helpuserback" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="helpp2" layoutX="11.0" layoutY="10.0" prefHeight="664.0" prefWidth="1182.0" styleClass="help" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="14.0" layoutY="614.0" onMouseClicked="#helpuserbackp2" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="helpp1" layoutX="11.0" layoutY="10.0" prefHeight="664.0" prefWidth="1182.0" styleClass="help" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="14.0" layoutY="614.0" onMouseClicked="#helpuserbackp1" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pantallacarga" layoutX="1.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="58.0" fitWidth="69.0" layoutX="1086.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Cargando.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="127.0" fitWidth="289.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="58.0" fitWidth="69.0" layoutX="944.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pantallatop" layoutX="11.0" layoutY="10.0" prefHeight="664.0" prefWidth="1182.0" style="-fx-background-color: black;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="14.0" layoutY="614.0" onMouseClicked="#topscoreback" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/back.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

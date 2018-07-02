@@ -1,0 +1,9 @@
+.root{
+-fx-background-image:url('fondoinicio.png');
+-fx-background-size:cover;
+}
+
+.help{
+-fx-background-image:url('pantallaayuda.png');
+-fx-background-size:cover;
+}
