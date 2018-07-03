@@ -19,13 +19,13 @@ import java.io.File;
 public class mainApp extends Application {
 
     private static mainApp main;
+    static reproductor reproductor = new reproductor();
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         primaryStage.setScene(FactoryScene.getScene(TypeScene.MAIN,this));
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
-        reproductor reproductor = new reproductor();
         reproductor.reproducir("fondoinicio");
     }
 
@@ -41,6 +41,11 @@ public class mainApp extends Application {
 
     public static mainApp getInstance() {
         return main;
+    }
+
+    public static void getMusic(){
+        MediaPlayer mediaPlayer = reproductor.reproducir("fondoinicio").getMediaPlayer();
+        mediaPlayer.stop();
     }
 
 }

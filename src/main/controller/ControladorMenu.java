@@ -149,5 +149,9 @@ public class ControladorMenu {
         Image image = new Image(getClass().getResourceAsStream("../images/bomberman.png"));
         eleccionplayer1.setImage(image);
     }
+    @FXML
+    void elejirpersonaje (MouseEvent event){
+
+    }
 
 }

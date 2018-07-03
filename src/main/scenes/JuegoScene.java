@@ -16,36 +16,42 @@ public  class JuegoScene extends Scene {
     public JuegoScene(Parent root) {
         super(root);
 
+
         ImageView player1 = (ImageView) lookup("#p1");
         ImageView player2 = (ImageView) lookup("#p2");
-        GridPane tablero = (GridPane) lookup("#tablero")    ;
 
 
         addEventHandler(KeyEvent.KEY_PRESSED, event -> {
 
             if(event.getCode() == KeyCode.W){
-                    tablero.add(player1, tablero.getColumnIndex(player1), tablero.getRowIndex(player1) - 1);
+                player1.setY(player1.getY() - 10);
+                Image image = new Image(getClass().getResourceAsStream("../images/bombermanarriba.gif"));
+                player1.setImage(image);
+                System.out.println(player1.getImage());
             } else if (event.getCode() == KeyCode.A){
-                if(tablero.getColumnIndex(player1)-1 != 0)
-                    tablero.add(player1,tablero.getColumnIndex(player1)-1,tablero.getRowIndex(player1));
+                player1.setX(player1.getX() - 10);
+                Image image = new Image(getClass().getResourceAsStream("../images/bombermanizquierda.gif"));
+                player1.setImage(image);
             } else if (event.getCode() == KeyCode.D){
-                if(tablero.getColumnIndex(player1)+1 != 16)
-                    tablero.add(player1,tablero.getColumnIndex(player1)+1,tablero.getRowIndex(player1));
+                player1.setX(player1.getX() + 10);
+                Image image = new Image(getClass().getResourceAsStream("../images/bombermanderecha.gif"));
+                player1.setImage(image);
             } else if (event.getCode() == KeyCode.S) {
-                if(tablero.getRowIndex(player1)+1 != 12)
-                    tablero.add(player1,tablero.getColumnIndex(player1),tablero.getRowIndex(player1)+1);
+                player1.setY(player1.getY() + 10);
+                Image image = new Image(getClass().getResourceAsStream("../images/bombermanabajo.gif"));
+                player1.setImage(image);
             }
-            else if(event.getCode() == KeyCode.UP){
-                    tablero.add(player2, tablero.getColumnIndex(player2), tablero.getRowIndex(player2) - 1);
+
+
+
+            if(event.getCode() == KeyCode.UP){
+                player2.setY(player2.getY() - 10);
             } else if (event.getCode() == KeyCode.LEFT){
-                if(tablero.getColumnIndex(player2)-1 != 0)
-                    tablero.add(player2,tablero.getColumnIndex(player2)-1,tablero.getRowIndex(player2));
+                player2.setX(player2.getX() - 10);
             } else if (event.getCode() == KeyCode.RIGHT){
-                if(tablero.getColumnIndex(player2)+1 != 16)
-                    tablero.add(player2,tablero.getColumnIndex(player2)+1,tablero.getRowIndex(player2));
+                player2.setX(player2.getX() + 10);
             } else if (event.getCode() == KeyCode.DOWN) {
-                if(tablero.getRowIndex(player2)+1 != 12)
-                    tablero.add(player2,tablero.getColumnIndex(player2),tablero.getRowIndex(player2)+1);
+                player2.setY(player2.getY() + 10);
             }
         });
         setFill(Color.TRANSPARENT);

@@ -7,9 +7,11 @@ import javafx.scene.media.MediaView;
 import java.io.File;
 
 public class reproductor {
+    MediaView mediaView = new MediaView(null);
+
 
     public MediaView reproducir(String cancion){
-        MediaView mediaView = new MediaView(null);
+
         if(cancion == "fondoinicio"){
             String path = "C:/Users/Onilink/IdeaProjects/Interfaz_a_patita/src/main/musica/fondoinicio.mp3";
             Media media = new Media(new File(path).toURI().toString());
@@ -27,5 +29,7 @@ public class reproductor {
         }
         return null;
     }
+
+
 
 }

@@ -16,6 +16,8 @@ import main.Jugadores.Jugador1;
 import main.Jugadores.Jugador2;
 import main.Jugadores.Jugadores;
 import main.mainApp;
+import main.musica.reproductor;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -72,13 +74,16 @@ public class ControladorInicio implements Initializable {
         }catch(InterruptedException e ) {
             System.out.println("Thread Interrupted");
         }
-
+        mainApp.getMusic();
 
         Parent parent = FXMLLoader.load(mainApp.obtenerdirrectorio().getClass().getResource("fxml/pantallaMenu.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(parent);
         stage.setScene(scene);
+        reproductor reproductor = new reproductor();
+        reproductor.reproducir("fondojuego");
     }
+
     @FXML
     void pantallaCarga (){
         pantallacarga.setVisible(true);

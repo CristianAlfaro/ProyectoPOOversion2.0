@@ -47,8 +47,6 @@ public class ControladorJuego implements Initializable {
         y = event.getSceneY();
     }
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
