@@ -1,8 +1,6 @@
 package main;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -10,31 +8,37 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import main.musica.reproductor;
 import main.scenes.FactoryScene;
-import main.scenes.JuegoScene;
 import main.scenes.TypeScene;
-
-import java.io.File;
+import main.videos.videoreproductor;
 
 
 public class mainApp extends Application {
 
     private static mainApp main;
-    static reproductor reproductor = new reproductor();
+    public static reproductor reproductor = new reproductor();
+    static videoreproductor videoreproductor = new videoreproductor();
+
     @Override
+
     public void start(Stage primaryStage) throws Exception {
 
-        primaryStage.setScene(FactoryScene.getScene(TypeScene.MAIN,this));
+
+        reproductor.reproducir("fondoinicio").getMediaPlayer().play();
+        primaryStage.setScene(FactoryScene.getScene(TypeScene.MAIN, this));
         primaryStage.initStyle(StageStyle.TRANSPARENT);
+        System.out.println(primaryStage);
         primaryStage.show();
-        reproductor.reproducir("fondoinicio");
+        main = this;
     }
 
 
-    public static void main(String... args){
+    public static void main(String... args) {
         launch(args);
+
     }
 
-    public static mainApp obtenerdirrectorio(){
+
+    public static mainApp obtenerdirrectorio() {
         main = new mainApp();
         return main;
     }
@@ -43,9 +47,5 @@ public class mainApp extends Application {
         return main;
     }
 
-    public static void getMusic(){
-        MediaPlayer mediaPlayer = reproductor.reproducir("fondoinicio").getMediaPlayer();
-        mediaPlayer.stop();
-    }
 
 }

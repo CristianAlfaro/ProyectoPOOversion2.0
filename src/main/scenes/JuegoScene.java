@@ -16,7 +16,6 @@ public  class JuegoScene extends Scene {
     public JuegoScene(Parent root) {
         super(root);
 
-
         ImageView player1 = (ImageView) lookup("#p1");
         ImageView player2 = (ImageView) lookup("#p2");
 
@@ -27,7 +26,6 @@ public  class JuegoScene extends Scene {
                 player1.setY(player1.getY() - 10);
                 Image image = new Image(getClass().getResourceAsStream("../images/bombermanarriba.gif"));
                 player1.setImage(image);
-                System.out.println(player1.getImage());
             } else if (event.getCode() == KeyCode.A){
                 player1.setX(player1.getX() - 10);
                 Image image = new Image(getClass().getResourceAsStream("../images/bombermanizquierda.gif"));

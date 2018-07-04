@@ -11,7 +11,7 @@ import java.io.IOException;
 public class FactoryScene {
 
     public static Scene getScene(TypeScene type, Application app) {
-        Parent fxml = null;
+        Parent fxml;
         switch (type) {
             case JUEGUITO:
 
@@ -30,9 +30,11 @@ public class FactoryScene {
                 }
             case SELLECCION:
                 try {
+                    System.out.println("hola");
                     fxml = FXMLLoader.load(app.getClass().getResource("fxml/pantallaMenu.fxml"));
                     return new JuegoScene(fxml);
                 } catch (IOException e) {
+                    System.out.println("te he fallado");
                     e.printStackTrace();
                 }
 

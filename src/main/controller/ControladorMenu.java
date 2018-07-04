@@ -73,8 +73,6 @@ public class ControladorMenu {
         }catch(InterruptedException e ) {
             System.out.println("Thread Interrupted");
         }
-
-        Parent parent = FXMLLoader.load(mainApp.obtenerdirrectorio().getClass().getResource("fxml/pantallaJuego.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(FactoryScene.getScene(TypeScene.JUEGUITO,mainApp.getInstance()));
 
