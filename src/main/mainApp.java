@@ -16,7 +16,6 @@ public class mainApp extends Application {
 
     private static mainApp main;
     public static reproductor reproductor = new reproductor();
-    static videoreproductor videoreproductor = new videoreproductor();
 
     @Override
 
@@ -24,19 +23,18 @@ public class mainApp extends Application {
 
 
         reproductor.reproducir("fondoinicio").getMediaPlayer().play();
-        primaryStage.setScene(FactoryScene.getScene(TypeScene.MAIN, this));
+        primaryStage.setScene(FactoryScene.getScene(TypeScene.SELLECCION , this));
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         System.out.println(primaryStage);
         primaryStage.show();
+
         main = this;
     }
-
 
     public static void main(String... args) {
         launch(args);
 
     }
-
 
     public static mainApp obtenerdirrectorio() {
         main = new mainApp();
@@ -47,5 +45,7 @@ public class mainApp extends Application {
         return main;
     }
 
-
+    public static reproductor obtenerReproductor(){
+        return reproductor;
+    }
 }

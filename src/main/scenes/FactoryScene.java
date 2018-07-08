@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import main.musica.reproductor;
 
 import java.io.IOException;
 
@@ -14,27 +15,27 @@ public class FactoryScene {
         Parent fxml;
         switch (type) {
             case JUEGUITO:
-
                 try {
                     fxml = FXMLLoader.load(app.getClass().getResource("fxml/pantallaJuego.fxml"));
-                    return new JuegoScene(fxml);
+                    Scene j = new JuegoScene(fxml);
+                    return j;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                break;
             case MAIN:
                 try {
                     fxml = FXMLLoader.load(app.getClass().getResource("fxml/pantallaInicio.fxml"));
-                    return new JuegoScene(fxml);
+                    return new Scene(fxml);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                break;
             case SELLECCION:
                 try {
-                    System.out.println("hola");
                     fxml = FXMLLoader.load(app.getClass().getResource("fxml/pantallaMenu.fxml"));
-                    return new JuegoScene(fxml);
+                    return new JuegoScene1(fxml);
                 } catch (IOException e) {
-                    System.out.println("te he fallado");
                     e.printStackTrace();
                 }
 

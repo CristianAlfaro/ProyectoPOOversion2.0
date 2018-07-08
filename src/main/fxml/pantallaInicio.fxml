@@ -4,6 +4,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="patallainicio" onKeyReleased="#handleOnKeyReleased" onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="673.0" prefWidth="1194.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.ControladorInicio">
@@ -13,7 +14,7 @@
             <Image url="@../images/top.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="56.0" layoutY="612.0" onMouseClicked="#helpuser" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="1136.0" layoutY="612.0" onMouseClicked="#helpuser" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ayuda.png" />
          </image>
@@ -99,5 +100,7 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <MediaView fx:id="mediaview" fitHeight="673.0" fitWidth="1194.0" layoutX="1.0" visible="false" />
+      <ImageView fx:id="star" fitHeight="667.0" fitWidth="1194.0" onMousePressed="#star" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

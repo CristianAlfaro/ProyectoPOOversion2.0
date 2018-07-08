@@ -27,14 +27,8 @@ public class ControladorJuego implements Initializable {
     double y = 0;
     @FXML private ImageView player1;
     @FXML private ImageView player2;
-
-
-
-
-
     @FXML private ImageView link;
     @FXML private AnchorPane fondojuego;
-
     @FXML
     void dragged (MouseEvent event){
         Node node = (Node) event.getSource();
@@ -43,13 +37,11 @@ public class ControladorJuego implements Initializable {
         stage.setX(event.getScreenX() - x);
         stage.setY(event.getScreenY() - y);
     }
-
     @FXML
     void pressed (MouseEvent event) {
         x = event.getSceneX();
         y = event.getSceneY();
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

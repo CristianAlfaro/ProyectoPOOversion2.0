@@ -36,14 +36,9 @@ public class ControladorMenu {
     @FXML private ImageView bombermatabla;
     @FXML private ImageView ashtabla;
     @FXML private ImageView gokutabla;
-    @FXML private ImageView cursorP1;
-    @FXML private GridPane tablero;
 
-    ImageView player1 = cursorP1;
 
     @FXML private AnchorPane tienda;
-
-
 
     @FXML
     void dragged (MouseEvent event){
@@ -53,19 +48,16 @@ public class ControladorMenu {
         stage.setX(event.getScreenX() - x);
         stage.setY(event.getScreenY() - y);
     }
-
     @FXML
     void pressed (MouseEvent event) {
         x = event.getSceneX();
         y = event.getSceneY();
     }
-
     @FXML
     void closeWindows (MouseEvent event){
         Platform.exit();
         System.exit(0);
     }
-
     @FXML
     void Jugar (MouseEvent event) throws Exception {
         try{
@@ -73,11 +65,11 @@ public class ControladorMenu {
         }catch(InterruptedException e ) {
             System.out.println("Thread Interrupted");
         }
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(FactoryScene.getScene(TypeScene.JUEGUITO,mainApp.getInstance()));
 
     }
-
     @FXML
     void store (MouseEvent event){
         tienda.setVisible(true);
@@ -86,70 +78,13 @@ public class ControladorMenu {
     void storeback (MouseEvent event){
         tienda.setVisible(false);
     }
+    @FXML
+    private void  handleOnKeyReleased (KeyEvent event) {
 
-    @FXML
-    void elejirpersonajelink (MouseEvent event){
-        System.out.println(linktabla.getId());
-        Image image = new Image(getClass().getResourceAsStream("../images/link.png"));
-        eleccionplayer1.setImage(image);
-    }
-    @FXML
-    void elejirpersonajezelda (MouseEvent event){
-        System.out.println(zeldatabla.getId());
-        Image image = new Image(getClass().getResourceAsStream("../images/zelda.png"));
-        eleccionplayer1.setImage(image);
-    }
-    @FXML
-    void elejirpersonajesamus (MouseEvent event){
-        System.out.println(samustabla.getId());
-        Image image = new Image(getClass().getResourceAsStream("../images/samus.png"));
-        eleccionplayer1.setImage(image);
-    }
-    @FXML
-    void elejirpersonajepikachu (MouseEvent event){
-        System.out.println(pikachutabla.getId());
-        Image image = new Image(getClass().getResourceAsStream("../images/pikachu.png"));
-        eleccionplayer1.setImage(image);
-    }
-    @FXML
-    void elejirpersonajesonic (MouseEvent event){
-        System.out.println(sonictabla.getId());
-        Image image = new Image(getClass().getResourceAsStream("../images/sonic.png"));
-        eleccionplayer1.setImage(image);
-    }
-    @FXML
-    void elejirpersonajekirby (MouseEvent event){
-        System.out.println(kirbytabla.getId());
-        Image image = new Image(getClass().getResourceAsStream("../images/kirby.png"));
-        eleccionplayer1.setImage(image);
-    }
-    @FXML
-    void elejirpersonajeash (MouseEvent event){
-        System.out.println(ashtabla.getId());
-        Image image = new Image(getClass().getResourceAsStream("../images/ash.png"));
-        eleccionplayer1.setImage(image);
-    }
-    @FXML
-    void elejirpersonajegoku (MouseEvent event){
-        System.out.println(gokutabla.getId());
-        Image image = new Image(getClass().getResourceAsStream("../images/goku.png"));
-        eleccionplayer1.setImage(image);
-    }
-    @FXML
-    void elejirpersonajepacman (MouseEvent event){
-        System.out.println(pacmantabla.getId());
-        Image image = new Image(getClass().getResourceAsStream("../images/pacman.png"));
-        eleccionplayer1.setImage(image);
-    }
-    @FXML
-    void elejirpersonajebomberman (MouseEvent event){
-        System.out.println(bombermatabla.getId());
-        Image image = new Image(getClass().getResourceAsStream("../images/bomberman.png"));
-        eleccionplayer1.setImage(image);
-    }
-    @FXML
-    void elejirpersonaje (MouseEvent event){
-
+        if (event.getCode() == KeyCode.SPACE || event.getCode() == KeyCode.ENTER) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(FactoryScene.getScene(TypeScene.JUEGUITO, mainApp.getInstance()));
+        }
     }
 
 }

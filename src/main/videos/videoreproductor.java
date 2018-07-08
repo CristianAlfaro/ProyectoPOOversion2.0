@@ -8,13 +8,11 @@ import java.io.File;
 
 public class videoreproductor {
 
-    MediaView mediaView = new MediaView(null);
 
-
-    public MediaPlayer reproducir(String video){
+    public  static MediaPlayer reproducir(String video){
 
         if(video == "videoinicio"){
-            String path = "C:/Users/Onilink/IdeaProjects/Interfaz_a_patita/src/main/images/introInicio.mp4";
+            String path = "C:/Users/Onilink/IdeaProjects/ProyectoPOO_1.0/src/main/images/4.mp4";
             Media media = new Media(new File(path).toURI().toString());
             MediaPlayer mediaPlayer = new MediaPlayer(media);
             mediaPlayer.setAutoPlay(true);
