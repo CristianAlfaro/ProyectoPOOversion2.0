@@ -31,15 +31,21 @@ import static main.Jugadores.elecciondePersonajes.vida;
 public class JuegoScene extends Scene {
 
     Scene cambiar;
-    AnchorPane tablero;
-    ImageView player1;
-    ImageView player2;
-    public static double rangoBombas = 50;
-    double pantallaancho = 1350;
-    double pantallalaro = 900;
+    public static AnchorPane tablero;
     public static double vidap1 = vida;
     public static double vidap2 = vida;
-    static int aux2 = 0;
+    public static double rangobombaP1 = 50;
+    public static double rangobombaP2 = 50;
+    
+    public static  ArrayList<ImageView> obstaculos;
+    public static  ArrayList<ImageView> obstaculosDestruidos;
+
+    public static ImageView player1;
+    public static ImageView player2;
+
+    double pantallaancho = 1350;
+    double pantallalaro = 900;
+
 
 
     private BooleanProperty upPressed = new SimpleBooleanProperty();
@@ -72,8 +78,8 @@ public class JuegoScene extends Scene {
         player2.setX(pantallaancho-(pantallaancho-1290));
         player2.setY(pantallalaro/2);
         System.out.println(vidap1 +" "+vidap2);
-        ArrayList<ImageView> obstaculos = new ArrayList<>();
-        ArrayList<ImageView> obstaculosDestruidos = new ArrayList<>();
+        obstaculos = new ArrayList<>();
+        obstaculosDestruidos = new ArrayList<>();
         crearmurosBordes(tamañao,tablero,obstaculos);
         crearmurosIrrompibles(tamañao,tablero,obstaculos);
         crearmurosRrompibles(tamañao,tablero,obstaculosDestruidos);
@@ -153,11 +159,9 @@ public class JuegoScene extends Scene {
                 int velocidad = 5;
 
                 if (upPressed.get()) {
-                    ImageView aux = new ImageView();
-                    aux.setX(player2.getX());
+                    ImageView aux = auxiliares(player2,tamañao);
+                    player2 = personaje2.personajeArriba(tablero,JuegoScene1.player2eleccion,tamañao);
                     aux.setY(player2.getY()-velocidad);
-                    aux.setFitWidth(tamañao);
-                    aux.setFitHeight(tamañao);
                     if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
                             if (!choques(player2, obstaculos)) {
                                 player2.setY(player2.getY() - velocidad);
@@ -166,11 +170,9 @@ public class JuegoScene extends Scene {
                 }
 
                 if (downPressed.get()) {
-                    ImageView aux = new ImageView();
-                    aux.setX(player2.getX());
+                    ImageView aux = auxiliares(player2,tamañao);
+                    player2 = personaje2.personajeAbajo(tablero,JuegoScene1.player2eleccion,tamañao);
                     aux.setY(player2.getY()+velocidad);
-                    aux.setFitWidth(tamañao);
-                    aux.setFitHeight(tamañao);
                     if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
                             if (!choques(player2, obstaculos)) {
                                 player2.setY(player2.getY() + velocidad);
@@ -178,38 +180,32 @@ public class JuegoScene extends Scene {
                     }
                 }
                 if (rightPressed.get()) {
-                        ImageView aux = new ImageView();
-                        aux.setX(player2.getX()+velocidad);
-                        aux.setY(player2.getY());
-                        aux.setFitWidth(tamañao);
-                        aux.setFitHeight(tamañao);
-                        if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
-                            if (!choques(player2, obstaculos)) {
-                                player2.setX(player2.getX() + velocidad);
+                    ImageView aux = auxiliares(player2,tamañao);
+                    player2 = personaje2.personajeDerecha(tablero,JuegoScene1.player2eleccion,tamañao);
+                    aux.setX(player2.getX()+velocidad);
+                    if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
+                        if (!choques(player2, obstaculos)) {
+                            player2.setX(player2.getX() + velocidad);
                             }
                         }
                 }
 
                 if (leftPressed.get()) {
-                        ImageView aux = new ImageView();
-                        aux.setX(player2.getX() - velocidad);
-                        aux.setY(player2.getY());
-                        aux.setFitWidth(tamañao);
-                        aux.setFitHeight(tamañao);
-                        if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
-                            if (player2.getX() >= 61) {
-                                if (!choques(player2, obstaculos)) {
+                    ImageView aux = auxiliares(player2,tamañao);
+                    player2 = personaje2.personajeIzquierda(tablero,JuegoScene1.player2eleccion,tamañao);
+                    aux.setX(player2.getX() - velocidad);
+                    if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
+                        if (player2.getX() >= 61) {
+                            if (!choques(player2, obstaculos)) {
                                     player2.setX(player2.getX() - velocidad);
-                                }
                             }
                         }
+                    }
                 }
                 if (wPressed.get()) {
-                    ImageView aux = new ImageView();
-                    aux.setX(player1.getX());
+                    ImageView aux = auxiliares(player1,tamañao);
+                    player1 = personaje1.personajeArriba(tablero,JuegoScene1.player1eleccion,tamañao);
                     aux.setY(player1.getY()-velocidad);
-                    aux.setFitWidth(tamañao);
-                    aux.setFitHeight(tamañao);
                     if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
                         if (!choques(player1, obstaculos)) {
                             player1.setY(player1.getY() - velocidad);
@@ -218,11 +214,9 @@ public class JuegoScene extends Scene {
 
                 }
                 if (sPressed.get()) {
-                    ImageView aux = new ImageView();
-                    aux.setX(player1.getX());
+                    ImageView aux = auxiliares(player1,tamañao);
+                    player1 = personaje1.personajeAbajo(tablero,JuegoScene1.player1eleccion,tamañao);
                     aux.setY(player1.getY()+velocidad);
-                    aux.setFitWidth(tamañao);
-                    aux.setFitHeight(tamañao);
                     if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
                         if (!choques(player1, obstaculos)) {
                             player1.setY(player1.getY() + velocidad);
@@ -230,11 +224,9 @@ public class JuegoScene extends Scene {
                     }
                 }
                 if (dPressed.get()) {
-                    ImageView aux = new ImageView();
+                    ImageView aux = auxiliares(player1,tamañao);
+                    player1 = personaje1.personajeDerecha(tablero,JuegoScene1.player1eleccion,tamañao);
                     aux.setX(player1.getX()+velocidad);
-                    aux.setY(player1.getY());
-                    aux.setFitWidth(tamañao);
-                    aux.setFitHeight(tamañao);
                     if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
                         if (!choques(player1, obstaculos)) {
                             player1.setX(player1.getX() + velocidad);
@@ -243,11 +235,9 @@ public class JuegoScene extends Scene {
 
                 }
                 if (aPressed.get()) {
-                    ImageView aux = new ImageView();
+                    ImageView aux = auxiliares(player1,tamañao);
+                    player1 = personaje1.personajeIzquierda(tablero,JuegoScene1.player1eleccion,tamañao);
                     aux.setX(player1.getX() - velocidad);
-                    aux.setY(player1.getY());
-                    aux.setFitWidth(tamañao);
-                    aux.setFitHeight(tamañao);
                     if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
                         if (player1.getX() >= 61) {
                             if (!choques(player1, obstaculos)) {
@@ -263,75 +253,41 @@ public class JuegoScene extends Scene {
                         Bomba bomba = new Bomba();
                         bombita = bomba.crearBomba(player1, tablero);
                         ImageView aux1, aux2, aux3, aux4;
-                        aux1 = auxiliares(bombita, tamañao);
-                        aux2 = auxiliares(bombita, tamañao);
-                        aux3 = auxiliares(bombita, tamañao);
-                        aux4 = auxiliares(bombita, tamañao);
-                        aux1.setY(bombita.getY() - rangoBombas);
-                        aux2.setY(bombita.getY() + rangoBombas);
-                        aux3.setX(bombita.getX() - rangoBombas);
-                        aux4.setX(bombita.getX() + rangoBombas);
-                        if (!choques(aux1, obstaculosDestruidos)) {
-                            System.out.println("no hay bloques arriba");
-                        } else {
-                            destruir(aux1, obstaculosDestruidos);
-                        }
-                        if (!choques(aux2, obstaculosDestruidos)) {
-                            System.out.println("no hay bloques abajo");
-                        } else {
-                            destruir(aux2, obstaculosDestruidos);
-                        }
-                        if (!choques(aux3, obstaculosDestruidos)) {
-                            System.out.println("no hay bloques a la izquierda");
-                        } else {
-                            destruir(aux3, obstaculosDestruidos);
-                        }
-                        if (!choques(aux4, obstaculosDestruidos)) {
-                            System.out.println("no hay bloques a la derecha");
-                        } else {
-                            destruir(aux4, obstaculosDestruidos);
-                        }
+                        aux1 = auxiliares(bombita, rangobombaP1);
+                        aux1.setFitWidth(tamañao);
+                        aux2 = auxiliares(bombita, rangobombaP1);
+                        aux2.setFitWidth(tamañao);
+                        aux3 = auxiliares(bombita, rangobombaP1);
+                        aux3.setFitHeight(tamañao);
+                        aux4 = auxiliares(bombita, rangobombaP1);
+                        aux4.setFitHeight(tamañao);
+                        aux1.setY(bombita.getY() - rangobombaP1);
+                        aux2.setY(bombita.getY() + tamañao);
+                        aux3.setX(bombita.getX() - rangobombaP1);
+                        aux4.setX(bombita.getX() + tamañao);
+                        bomba.crearBomba(player1,tablero,aux1,aux2,aux3,aux4);
                     }
-
                 }
                 if (enterPressed.get()) {
-                    if (!wPressed.get() && !aPressed.get() && !dPressed.get() && !sPressed.get()) {
+                    if (!upPressed.get() && !downPressed.get() && !rightPressed.get() && !leftPressed.get()) {
                         ImageView bombita;
                         Bomba bomba = new Bomba();
-                        bombita = bomba.crearBomba(player2,tablero);
+                        bombita = bomba.crearBomba(player2, tablero);
                         ImageView aux1, aux2, aux3, aux4;
-                        aux1= auxiliares(bombita,tamañao);
-                        aux2= auxiliares(bombita,tamañao);
-                        aux3= auxiliares(bombita,tamañao);
-                        aux4= auxiliares(bombita,tamañao);
-                        aux1.setY(bombita.getY()-rangoBombas);
-                        aux2.setY(bombita.getY()+rangoBombas);
-                        aux3.setX(bombita.getX()-rangoBombas);
-                        aux4.setX(bombita.getX()+rangoBombas);
-                        if(!choques(aux1,obstaculosDestruidos)){
-                            System.out.println("no hay bloques arriba");
-                        }
-                        else {
-                            destruir(aux1,obstaculosDestruidos);
-                        }
-                        if(!choques(aux2,obstaculosDestruidos)){
-                            System.out.println("no hay bloques abajo");
-                        }
-                        else {
-                            destruir(aux2,obstaculosDestruidos);
-                        }
-                        if(!choques(aux3,obstaculosDestruidos)){
-                            System.out.println("no hay bloques a la izquierda");
-                        }
-                        else {
-                            destruir(aux3,obstaculosDestruidos);
-                        }
-                        if(!choques(aux4,obstaculosDestruidos)){
-                            System.out.println("no hay bloques a la derecha");
-                        }
-                        else {
-                            destruir(aux4,obstaculosDestruidos);
-                        }
+                        aux1 = auxiliares(bombita, rangobombaP2);
+                        aux1.setFitWidth(tamañao);
+                        aux2 = auxiliares(bombita, rangobombaP2);
+                        aux2.setFitWidth(tamañao);
+                        aux3 = auxiliares(bombita, rangobombaP2);
+                        aux3.setFitHeight(tamañao);
+                        aux4 = auxiliares(bombita, rangobombaP2);
+                        aux4.setFitHeight(tamañao);
+                        aux1.setY(bombita.getY() - rangobombaP2);
+                        aux2.setY(bombita.getY() + tamañao);
+                        aux3.setX(bombita.getX() - rangobombaP2);
+                        aux4.setX(bombita.getX() + tamañao);
+                        bomba.crearBomba(player2,tablero,aux1,aux2,aux3,aux4);
+
                     }
                 }
             }
@@ -347,7 +303,9 @@ public class JuegoScene extends Scene {
 
         setFill(Color.TRANSPARENT);
     }
-
+/*
+ * CREA LOS MUROS QUE PASAN AL REDEDOR DE LA PANTALLA PARA RESTRINGIR EL PASO
+ */
     public void crearmurosBordes(double tamañao, AnchorPane tablero, ArrayList<ImageView> listaObstaculos){
         int enx = 0;
         int enY = 0;
@@ -400,6 +358,9 @@ public class JuegoScene extends Scene {
 
         }
     }
+/*
+ * CREA LOS MUROS QUE DEVIDEN EL CAMINO EN CUADRICULAS
+ */
     public void crearmurosIrrompibles(double tamañao, AnchorPane tablero, ArrayList<ImageView> listaObstaculos){
         int distancia= 150;
         int enx = distancia;
@@ -412,8 +373,8 @@ public class JuegoScene extends Scene {
                 obstaculo.setImage(muro);
                 obstaculo.setY(enY);
                 obstaculo.setX(enx);
-                obstaculo.setFitHeight(tamañao);
-                obstaculo.setFitWidth(tamañao);
+                obstaculo.setFitHeight(tamañao+15);
+                obstaculo.setFitWidth(tamañao+15);
                 tablero.getChildren().add(obstaculo);
                 enx += distancia;
                 listaObstaculos.add(obstaculo);
@@ -425,6 +386,9 @@ public class JuegoScene extends Scene {
 
 
     }
+/*
+ * CREA LOS MUROS QUE PODRAN ROMPERSE
+ */
     public void crearmurosRrompibles(double tamañao, AnchorPane tablero, ArrayList<ImageView> listaObstaculos){
         int distancia= 75;
         int enx = distancia*3;
@@ -437,8 +401,8 @@ public class JuegoScene extends Scene {
                 obstaculo.setImage(muro);
                 obstaculo.setY(enY);
                 obstaculo.setX(enx);
-                obstaculo.setFitHeight(tamañao);
-                obstaculo.setFitWidth(tamañao);
+                obstaculo.setFitHeight(tamañao+10);
+                obstaculo.setFitWidth(tamañao+10);
                 tablero.getChildren().add(obstaculo);
                 enx += distancia*2;
                 listaObstaculos.add(obstaculo);
@@ -450,6 +414,9 @@ public class JuegoScene extends Scene {
 
 
     }
+/*
+ * DETECTA LOS CHOQUES
+ */
     public boolean choques (ImageView jugador, ArrayList<ImageView> bloques){
         int aux=0;
         while (aux <= bloques.size()-1) {
@@ -464,7 +431,21 @@ public class JuegoScene extends Scene {
         }
         return false;
     }
-    public void destruir (ImageView bomba, ArrayList<ImageView> bloques){
+
+    public static boolean choquesPlayer (ImageView jugador, ImageView bomba){
+        if (jugador.getBoundsInParent().intersects(bomba.getBoundsInParent())) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+
+    }
+/*
+ * DESTRUYE UN BLOQUE EN CONTACTO
+ */
+    public static ImageView destruir (ImageView bomba, ArrayList<ImageView> bloques){
         int aux=0;
         while (aux <= bloques.size()-1) {
 
@@ -476,11 +457,15 @@ public class JuegoScene extends Scene {
                 aux +=1;
             }
         }
+        return null;
     }
+/*
+ * GENERA LOS BLOQUES AUXILIARES PARA DIFERENTES FUNCIONES
+ */
     public ImageView auxiliares (ImageView bomba,double tamañao){
         ImageView aux= new ImageView();
-        aux.setY(bomba.getY()-rangoBombas);
-        aux.setX(bomba.getX()-rangoBombas);
+        aux.setY(bomba.getY());
+        aux.setX(bomba.getX());
         aux.setFitHeight(tamañao);
         aux.setFitWidth(tamañao);
         return aux;

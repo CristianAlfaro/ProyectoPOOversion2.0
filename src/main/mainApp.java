@@ -23,7 +23,7 @@ public class mainApp extends Application {
 
 
         reproductor.reproducir("fondoinicio").getMediaPlayer().play();
-        primaryStage.setScene(FactoryScene.getScene(TypeScene.MAIN , this));
+        primaryStage.setScene(FactoryScene.getScene(TypeScene.SELLECCION , this));
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         System.out.println(primaryStage);
         primaryStage.show();
@@ -48,5 +48,5 @@ public class mainApp extends Application {
     public static reproductor obtenerReproductor(){
         return reproductor;
     }
-    
+
 }
