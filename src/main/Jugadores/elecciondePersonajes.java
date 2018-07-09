@@ -45,7 +45,7 @@ public class elecciondePersonajes {
                 tablero.getChildren().add(player);
                 return  player;
             case "bombermantabla":
-                p1 = new Image(getClass().getResourceAsStream("../images/bombermanjuego.png"));
+                p1 = new Image(getClass().getResourceAsStream("../images/bombermanjuego.gif"));
                 player.setImage(p1);
                 tablero.getChildren().add(player);
                 return  player;

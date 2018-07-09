@@ -1,6 +1,9 @@
 package main.scenes;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -11,10 +14,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 import main.Jugadores.elecciondePersonajes;
 import main.proyectiles.Bomba;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import static main.Jugadores.elecciondePersonajes.vida;
 
@@ -29,10 +34,12 @@ public class JuegoScene extends Scene {
     AnchorPane tablero;
     ImageView player1;
     ImageView player2;
+    public static double rangoBombas = 50;
     double pantallaancho = 1350;
     double pantallalaro = 900;
     public static double vidap1 = vida;
     public static double vidap2 = vida;
+    static int aux2 = 0;
 
 
     private BooleanProperty upPressed = new SimpleBooleanProperty();
@@ -66,8 +73,10 @@ public class JuegoScene extends Scene {
         player2.setY(pantallalaro/2);
         System.out.println(vidap1 +" "+vidap2);
         ArrayList<ImageView> obstaculos = new ArrayList<>();
+        ArrayList<ImageView> obstaculosDestruidos = new ArrayList<>();
         crearmurosBordes(tamañao,tablero,obstaculos);
         crearmurosIrrompibles(tamañao,tablero,obstaculos);
+        crearmurosRrompibles(tamañao,tablero,obstaculosDestruidos);
 
 
         setOnKeyPressed(event -> {
@@ -144,76 +153,185 @@ public class JuegoScene extends Scene {
                 int velocidad = 5;
 
                 if (upPressed.get()) {
-                    if (!choques(player2, obstaculos)) {
-                        player2.setY(player2.getY() - velocidad);
-                    }else {
-                        player2.setY(player2.getY() + velocidad*2);
+                    ImageView aux = new ImageView();
+                    aux.setX(player2.getX());
+                    aux.setY(player2.getY()-velocidad);
+                    aux.setFitWidth(tamañao);
+                    aux.setFitHeight(tamañao);
+                    if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
+                            if (!choques(player2, obstaculos)) {
+                                player2.setY(player2.getY() - velocidad);
+                            }
                     }
                 }
 
                 if (downPressed.get()) {
-                    if (!choques(player2, obstaculos)) {
-                        player2.setY(player2.getY() + velocidad);
-                    }else {
-                        player2.setY(player2.getY() - velocidad*2);
+                    ImageView aux = new ImageView();
+                    aux.setX(player2.getX());
+                    aux.setY(player2.getY()+velocidad);
+                    aux.setFitWidth(tamañao);
+                    aux.setFitHeight(tamañao);
+                    if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
+                            if (!choques(player2, obstaculos)) {
+                                player2.setY(player2.getY() + velocidad);
+                            }
                     }
                 }
                 if (rightPressed.get()) {
-                    if (!choques(player2, obstaculos)) {
-                        player2.setX(player2.getX() + velocidad);
-                    }else {
-                        player2.setX(player2.getX());
-                    }
+                        ImageView aux = new ImageView();
+                        aux.setX(player2.getX()+velocidad);
+                        aux.setY(player2.getY());
+                        aux.setFitWidth(tamañao);
+                        aux.setFitHeight(tamañao);
+                        if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
+                            if (!choques(player2, obstaculos)) {
+                                player2.setX(player2.getX() + velocidad);
+                            }
+                        }
                 }
 
                 if (leftPressed.get()) {
-                    if (!choques(player2, obstaculos)) {
-                        player2.setX(player2.getX() - velocidad);
-                    }else {
-                        player2.setX(player2.getX() + velocidad*2      );
-                    }
+                        ImageView aux = new ImageView();
+                        aux.setX(player2.getX() - velocidad);
+                        aux.setY(player2.getY());
+                        aux.setFitWidth(tamañao);
+                        aux.setFitHeight(tamañao);
+                        if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
+                            if (player2.getX() >= 61) {
+                                if (!choques(player2, obstaculos)) {
+                                    player2.setX(player2.getX() - velocidad);
+                                }
+                            }
+                        }
                 }
                 if (wPressed.get()) {
-                    if (!choques(player1, obstaculos)) {
+                    ImageView aux = new ImageView();
+                    aux.setX(player1.getX());
+                    aux.setY(player1.getY()-velocidad);
+                    aux.setFitWidth(tamañao);
+                    aux.setFitHeight(tamañao);
+                    if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
+                        if (!choques(player1, obstaculos)) {
                             player1.setY(player1.getY() - velocidad);
-                    }else {
-                        player1.setY(player1.getY() + velocidad*2);
+                        }
                     }
 
                 }
                 if (sPressed.get()) {
-                    if (!choques(player1, obstaculos)) {
-                        player1.setY(player1.getY() + velocidad);
-                    }else {
-                        player1.setY(player1.getY() - velocidad*2);
+                    ImageView aux = new ImageView();
+                    aux.setX(player1.getX());
+                    aux.setY(player1.getY()+velocidad);
+                    aux.setFitWidth(tamañao);
+                    aux.setFitHeight(tamañao);
+                    if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
+                        if (!choques(player1, obstaculos)) {
+                            player1.setY(player1.getY() + velocidad);
+                        }
                     }
                 }
                 if (dPressed.get()) {
-                    if (!choques(player1, obstaculos)) {
-                        player1.setX(player1.getX() + velocidad);
-                    }else {
-                        player1.setX(player1.getX());
+                    ImageView aux = new ImageView();
+                    aux.setX(player1.getX()+velocidad);
+                    aux.setY(player1.getY());
+                    aux.setFitWidth(tamañao);
+                    aux.setFitHeight(tamañao);
+                    if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
+                        if (!choques(player1, obstaculos)) {
+                            player1.setX(player1.getX() + velocidad);
+                        }
                     }
 
                 }
                 if (aPressed.get()) {
-                    if (!choques(player1, obstaculos)) {
-                        player1.setX(player1.getX() - velocidad);
-                    }else {
-                        player1.setX(player1.getX() + velocidad*2      );
+                    ImageView aux = new ImageView();
+                    aux.setX(player1.getX() - velocidad);
+                    aux.setY(player1.getY());
+                    aux.setFitWidth(tamañao);
+                    aux.setFitHeight(tamañao);
+                    if (!choques(aux, obstaculos) && !choques(aux,obstaculosDestruidos)) {
+                        if (player1.getX() >= 61) {
+                            if (!choques(player1, obstaculos)) {
+                                player1.setX(player1.getX() - velocidad);
+                            }
+                        }
                     }
 
                 }
                 if (spacePressed.get()) {
                     if (!wPressed.get() && !aPressed.get() && !dPressed.get() && !sPressed.get()) {
-                        Bomba bomba = new Bomba("bomba");
-                        bomba.run(player1,tablero);
+                        ImageView bombita;
+                        Bomba bomba = new Bomba();
+                        bombita = bomba.crearBomba(player1, tablero);
+                        ImageView aux1, aux2, aux3, aux4;
+                        aux1 = auxiliares(bombita, tamañao);
+                        aux2 = auxiliares(bombita, tamañao);
+                        aux3 = auxiliares(bombita, tamañao);
+                        aux4 = auxiliares(bombita, tamañao);
+                        aux1.setY(bombita.getY() - rangoBombas);
+                        aux2.setY(bombita.getY() + rangoBombas);
+                        aux3.setX(bombita.getX() - rangoBombas);
+                        aux4.setX(bombita.getX() + rangoBombas);
+                        if (!choques(aux1, obstaculosDestruidos)) {
+                            System.out.println("no hay bloques arriba");
+                        } else {
+                            destruir(aux1, obstaculosDestruidos);
+                        }
+                        if (!choques(aux2, obstaculosDestruidos)) {
+                            System.out.println("no hay bloques abajo");
+                        } else {
+                            destruir(aux2, obstaculosDestruidos);
+                        }
+                        if (!choques(aux3, obstaculosDestruidos)) {
+                            System.out.println("no hay bloques a la izquierda");
+                        } else {
+                            destruir(aux3, obstaculosDestruidos);
+                        }
+                        if (!choques(aux4, obstaculosDestruidos)) {
+                            System.out.println("no hay bloques a la derecha");
+                        } else {
+                            destruir(aux4, obstaculosDestruidos);
+                        }
                     }
+
                 }
                 if (enterPressed.get()) {
-                    if (!upPressed.get() && !leftPressed.get() && !rightPressed.get() && !downPressed.get()) {
-                        Bomba bomba = new Bomba("bomba");
-                        bomba.run(player2,tablero);
+                    if (!wPressed.get() && !aPressed.get() && !dPressed.get() && !sPressed.get()) {
+                        ImageView bombita;
+                        Bomba bomba = new Bomba();
+                        bombita = bomba.crearBomba(player2,tablero);
+                        ImageView aux1, aux2, aux3, aux4;
+                        aux1= auxiliares(bombita,tamañao);
+                        aux2= auxiliares(bombita,tamañao);
+                        aux3= auxiliares(bombita,tamañao);
+                        aux4= auxiliares(bombita,tamañao);
+                        aux1.setY(bombita.getY()-rangoBombas);
+                        aux2.setY(bombita.getY()+rangoBombas);
+                        aux3.setX(bombita.getX()-rangoBombas);
+                        aux4.setX(bombita.getX()+rangoBombas);
+                        if(!choques(aux1,obstaculosDestruidos)){
+                            System.out.println("no hay bloques arriba");
+                        }
+                        else {
+                            destruir(aux1,obstaculosDestruidos);
+                        }
+                        if(!choques(aux2,obstaculosDestruidos)){
+                            System.out.println("no hay bloques abajo");
+                        }
+                        else {
+                            destruir(aux2,obstaculosDestruidos);
+                        }
+                        if(!choques(aux3,obstaculosDestruidos)){
+                            System.out.println("no hay bloques a la izquierda");
+                        }
+                        else {
+                            destruir(aux3,obstaculosDestruidos);
+                        }
+                        if(!choques(aux4,obstaculosDestruidos)){
+                            System.out.println("no hay bloques a la derecha");
+                        }
+                        else {
+                            destruir(aux4,obstaculosDestruidos);
+                        }
                     }
                 }
             }
@@ -307,11 +425,35 @@ public class JuegoScene extends Scene {
 
 
     }
+    public void crearmurosRrompibles(double tamañao, AnchorPane tablero, ArrayList<ImageView> listaObstaculos){
+        int distancia= 75;
+        int enx = distancia*3;
+        int enY = distancia;
+
+        while (enY < pantallalaro){
+            while (enx <= pantallaancho-distancia*3) {
+                Image muro = new Image(getClass().getResourceAsStream("../images/muro3.jpg"));
+                ImageView obstaculo = new ImageView();
+                obstaculo.setImage(muro);
+                obstaculo.setY(enY);
+                obstaculo.setX(enx);
+                obstaculo.setFitHeight(tamañao);
+                obstaculo.setFitWidth(tamañao);
+                tablero.getChildren().add(obstaculo);
+                enx += distancia*2;
+                listaObstaculos.add(obstaculo);
+
+            }
+            enx= distancia*3;
+            enY += distancia*2;
+        }
 
 
+    }
     public boolean choques (ImageView jugador, ArrayList<ImageView> bloques){
         int aux=0;
         while (aux <= bloques.size()-1) {
+
             if (jugador.getBoundsInParent().intersects(bloques.get(aux).getBoundsInParent())) {
                 return true;
             }
@@ -322,6 +464,30 @@ public class JuegoScene extends Scene {
         }
         return false;
     }
+    public void destruir (ImageView bomba, ArrayList<ImageView> bloques){
+        int aux=0;
+        while (aux <= bloques.size()-1) {
+
+            if (bomba.getBoundsInParent().intersects(bloques.get(aux).getBoundsInParent())) {
+                tablero.getChildren().remove(tablero.getChildren().indexOf(bloques.get(aux)));
+                bloques.remove(aux);
+            }
+            else {
+                aux +=1;
+            }
+        }
+    }
+    public ImageView auxiliares (ImageView bomba,double tamañao){
+        ImageView aux= new ImageView();
+        aux.setY(bomba.getY()-rangoBombas);
+        aux.setX(bomba.getX()-rangoBombas);
+        aux.setFitHeight(tamañao);
+        aux.setFitWidth(tamañao);
+        return aux;
+    }
+
+
+
 
 
 
