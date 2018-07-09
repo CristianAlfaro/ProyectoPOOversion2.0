@@ -58,7 +58,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="helpp2" layoutX="11.0" layoutY="10.0" prefHeight="664.0" prefWidth="1182.0" styleClass="help" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="helpp2" layoutX="11.0" layoutY="10.0" prefHeight="664.0" prefWidth="1182.0" styleClass="helpP1" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="14.0" layoutY="614.0" onMouseClicked="#helpuserbackp2" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -67,7 +67,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="helpp1" layoutX="11.0" layoutY="10.0" prefHeight="664.0" prefWidth="1182.0" styleClass="help" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="helpp1" layoutX="11.0" layoutY="10.0" prefHeight="664.0" prefWidth="1182.0" styleClass="helpP2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="45.0" fitWidth="58.0" layoutX="14.0" layoutY="614.0" onMouseClicked="#helpuserbackp1" pickOnBounds="true" preserveRatio="true">
                <image>
