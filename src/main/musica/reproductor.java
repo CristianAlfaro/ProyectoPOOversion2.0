@@ -14,13 +14,13 @@ public class reproductor {
     public MediaView reproducir(String cancion){
 
         if(cancion == "fondoinicio"){
-            String path = "C:/Users/Onilink/IdeaProjects/Interfaz_a_patita/src/main/musica/fondoinicio.mp3";
+            String path = "../ProyectoPOO_1.0/src/main/musica/fondoinicio.mp3";
             Media media = new Media(new File(path).toURI().toString());
             mediaPlayer = new MediaPlayer(media);
             mediaView = new MediaView(mediaPlayer);
             return mediaView;
         }else if(cancion == "fondojuego"){
-            String path = "C:/Users/Onilink/IdeaProjects/Interfaz_a_patita/src/main/musica/fondojuego.mp3";
+            String path = "../ProyectoPOO_1.0/src/main/musica/fondojuego.mp3";
             Media media = new Media(new File(path).toURI().toString());
             MediaPlayer mediaPlayer2 = new MediaPlayer(media);
             mediaView = new MediaView(mediaPlayer2);
@@ -28,7 +28,4 @@ public class reproductor {
         }
         return null;
     }
-
-
-
 }
